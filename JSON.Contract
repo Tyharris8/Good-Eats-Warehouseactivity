@@ -1,0 +1,76 @@
+{
+  "contract": {
+    "organization": "Good Eats",
+    "department": "Warehouse",
+    "dataFile": "customers.json",
+    "entityType": "customer",
+    "fields": [
+      {
+        "field": "id",
+        "type": "text",
+        "example": "C001",
+        "meaning": "a unique id for this row"
+      },
+      {
+        "field": "customerName",
+        "type": "text",
+        "example": "Bistro On Main",
+        "meaning": "the name of the customer or client business"
+      },
+      {
+        "field": "contactPerson",
+        "type": "text",
+        "example": "Sarah Jenkins",
+        "meaning": "the primary point of contact"
+      },
+      {
+        "field": "lastContactDate",
+        "type": "date (YYYY-MM-DD)",
+        "example": "2026-09-15",
+        "meaning": "the date we last spoke with the customer"
+      },
+      {
+        "field": "daysSinceContact",
+        "type": "number",
+        "example": 20,
+        "meaning": "number of days elapsed since last contact"
+      },
+      {
+        "field": "followUpDue",
+        "type": "yes/no",
+        "example": "yes",
+        "meaning": "whether the customer is due for a call"
+      },
+      {
+        "field": "orderFrequencyDays",
+        "type": "number",
+        "example": 14,
+        "meaning": "expected number of days between customer orders"
+      }
+    ],
+    "tagField": "followUpDue",
+    "summaryNumbers": [
+      {
+        "label": "Total Customers",
+        "calculation": "count of all objects"
+      },
+      {
+        "label": "Follow-ups Overdue",
+        "calculation": "count where followUpDue is yes"
+      },
+      {
+        "label": "Recent Contacts",
+        "calculation": "count where daysSinceContact is 7 or less"
+      }
+    ],
+    "alertRule": "followUpDue is yes",
+    "pageHooks": [
+      "#title",
+      "#summary",
+      "#list",
+      ".card",
+      ".tag",
+      ".alert"
+    ]
+  }
+}
